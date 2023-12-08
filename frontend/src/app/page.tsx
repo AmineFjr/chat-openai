@@ -30,7 +30,7 @@ export default function Chat() {
     const [username, setUsername] = useState("");
     const [language, setLanguage] = useState("none");
     const [suggestions, setSuggestions] = useState<string[]>([]);
-    const [setSelectedSuggestion] = useState<string>("");
+    const [selectedSuggestion, setSelectedSuggestion] = useState<string>("");
 
     useEffect(() => {
         let storageUsername = localStorage.getItem("username");
@@ -87,7 +87,7 @@ export default function Chat() {
     }
 
     return (
-        <div className="flex flex-col h-screen bg-white dark:bg-gray-800">
+        <div className="flex flex-col h-screen overflow-visible bg-white dark:bg-gray-800">
             <div className="flex-1 p-4 overflow-y-auto bg-gray-800 text-white">
                 {messages.map((message: IMessage, index) => (
                     <div key={index} className="flex flex-col mb-4">
