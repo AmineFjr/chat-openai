@@ -110,6 +110,14 @@ export default function Chat() {
                         <option key={index} value={suggestion}>{suggestion}</option>
                     ))}
                 </select>
+                
+                <button
+                    type="button"
+                    onClick={handleSuggestions}
+                    className="mr-2 text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 dark:bg-green-600 dark:focus:ring-green-600 rounded-lg px-4 py-2">
+                    Suggest
+                </button>
+
                 <input
                     type="text"
                     placeholder="Type your message..."
@@ -125,13 +133,6 @@ export default function Chat() {
                     onClick={handleSubmit}
                     className="mr-2 text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:bg-blue-600 dark:focus:ring-blue-600 rounded-lg px-4 py-2">
                     Send
-                </button>
-
-                <button
-                    type="button"
-                    onClick={handleSuggestions}
-                    className="mr-2 text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:bg-blue-600 dark:focus:ring-blue-600 rounded-lg px-4 py-2">
-                    Suggest
                 </button>
 
                 <select
