@@ -74,6 +74,19 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         client.emit('messages-old', this.chatMessages);
     }
 
+    @SubscribeMessage('message-suggest')
+    async handleMessageSuggestion(client: any, payload: IMessage): Promise<void> {
+        let getSuggestions = await this.openai.chat.completions.create({
+            messages: [
+                { role: 'user', content: `J'écris un message, donne moi les suggestions à partir de ça : '${payload.content}' retourne moi que des suggestions sans rien d'autre` },
+            ],
+            model: 'gpt-3.5-turbo',
+        });
+
+        let result = getSuggestions.choices[0].message.content;
+        this.server.emit('message-suggest', result.split("\n").map(item => item.replace(/^\d+\.\s/, '')));
+    }
+
     handleDisconnect(client: any) {
         console.log('client disconnected ', client.id);
         this.clients = this.clients.filter((c) => c.client.id !== client.id);
