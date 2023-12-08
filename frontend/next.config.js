@@ -8,7 +8,7 @@ const nextConfig = {
         });
         config.resolve.symlinks = false;
         return config;
-    },
+    }
 };
 
 module.exports = nextConfig;

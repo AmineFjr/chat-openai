@@ -8,7 +8,8 @@ interface IMessage {
     language: string;
     timeSent: string;
 }
-const socket = io("http://localhost:3000");
+
+const socket = io(process.env.BACKEND_URL || "http://localhost:3000")
 const reformatDate = (dateString: string) => {
     return new Date(dateString).toLocaleString('fr-FR');
 };
