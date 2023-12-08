@@ -7,7 +7,7 @@ import {
 } from '@nestjs/websockets';
 import { Socket } from 'socket.io';
 import { OpenAI } from "openai";
-import * as dotenv from 'dotenv';
+import {configDotenv} from "dotenv";
 
 interface IMessage {
     username: string;
@@ -26,7 +26,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     chatMessages: IMessage[] = [];
 
     openai = new OpenAI({
-        apiKey: dotenv.config().parsed.OPENAI_API_KEY,
+        apiKey: process.env.OPENAI_API_KEY,
     });
 
     @SubscribeMessage('message')
