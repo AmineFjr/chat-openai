@@ -73,6 +73,19 @@ export default function Chat() {
     };
 
     const handleSpeech = () => {
+        if ('webkitSpeechRecognition' in window) {
+            const recognition = new webkitSpeechRecognition();
+            recognition.lang = "fr-FR";
+            recognition.onresult = (event)  => {
+                if (event.results.length > 0) {
+                    const transcript = event.results[0][0].transcript;
+                    setText(transcript);
+                }
+            }
+            recognition.start();
+        } else {
+            alert("Votre navigateur ne supporte pas la reconnaissance vocale");
+        }
     }
 
     const handleSuggestions = () => {
@@ -110,7 +123,7 @@ export default function Chat() {
                         <option key={index} value={suggestion}>{suggestion}</option>
                     ))}
                 </select>
-                
+
                 <button
                     type="button"
                     onClick={handleSuggestions}
